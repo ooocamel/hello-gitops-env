@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-gitops
+  labels:
+    app: hello-gitops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-gitops
+  template:
+    metadata:
+      labels:
+        app: hello-gitops
+    spec:
+      containers:
+      - name: hello-gitops
+        image: hello-gitops
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: SECRET_USERNAME
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: SECRET_PASSWORD
+        volumeMounts:
+        - name: config-test
+          mountPath: /etc/nginx.conf
+      volumes:
+      - name: config-test
+        configMap:
+          name: nginx-conf
