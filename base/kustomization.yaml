@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+images:
+- name: hello-gitops-app
+  newName: docker.io/ooocamel/hello-gitops
+  newTag: 08697d37e3492b92bb540b57244db444971848bc
