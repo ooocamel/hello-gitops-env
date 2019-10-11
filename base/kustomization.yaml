@@ -7,4 +7,4 @@ resources:
 images:
 - name: hello-gitops-app
   newName: docker.io/ooocamel/hello-gitops
-  newTag: 5d6d744f5637433ddfc57ccd8fe5593034f4aa3b
+  newTag: e8d7e7287928e458f0976ea777094206f5020bb5
