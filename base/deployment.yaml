@@ -17,23 +17,12 @@ spec:
       containers:
       - name: hello-gitops
         image: hello-gitops
+        resources:
+          requests:
+            cpu: 200m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
         ports:
         - containerPort: 8080
-        env:
-        - name: SECRET_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: mysecret
-              key: SECRET_USERNAME
-        - name: SECRET_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysecret
-              key: SECRET_PASSWORD
-        volumeMounts:
-        - name: config-test
-          mountPath: /etc/nginx.conf
-      volumes:
-      - name: config-test
-        configMap:
-          name: nginx-conf
